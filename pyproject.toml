@@ -1,0 +1,27 @@
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "clockcaptcha"
+version = "0.0.1"
+authors = [
+  { name="Stefan Stojanovic", email="stefs304@gmail.com" },
+]
+description = "Digital clock captcha"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.9"
+dependencies = [
+    "pillow"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/stefs304/clockcaptcha"
+Issues = "https://github.com/stefs304/clockcaptcha/issues"

@@ -43,7 +43,7 @@ class ClockCaptcha:
 
     @property
     def values(self):
-        return self._values
+        return ''.join(self._values)
 
     def verify(self, values: Union[list[str], str]) -> bool:
         """Verify captcha"""

@@ -3,6 +3,13 @@ Digital clock captcha
 
 ![captcha](./color-captcha.png)
 
+> Supports:
+> * `rgb` and `grayscale` color mode
+> * 12-hour and 24-hour clock mode
+> * custom colors
+
+### Installation
+
 ```shell
 pip install clockcaptcha
 ```
@@ -15,7 +22,7 @@ from clockcaptcha import ClockCaptcha
 captcha = ClockCaptcha()
 print(captcha.values)
 
-captcha.verify('0645') # False
+captcha.verify('0645') # True/False
 captcha.save_image('image.png')
 
 ```

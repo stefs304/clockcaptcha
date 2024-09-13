@@ -27,9 +27,16 @@ captcha.save_image('image.png')
 
 ```
 Choose between `color_mode='rgb'` ([color-captcha.png](color-captcha.png)) 
-or `'grayscale'` ([grayscale-captcha.png](grayscale-captcha.png)). Pick a 12-hour or a 24-hour `clock_mode`.
+or `'grayscale'` ([grayscale-captcha.png](grayscale-captcha.png)). 
 
-Image size can be changed with relative `size` parameter. Here are corresponding pixel sizes. 
+Pick between a 12-hour or a 24-hour `clock_mode`.
+```python
+from clockcaptcha import ClockCaptcha
+
+captcha = ClockCaptcha(clock_mode=12)
+```
+
+Image size can be changed with relative `size` parameter. Here are corresponding pixel values. 
 
 | size  | width   | height  |
 |-------|---------|---------|

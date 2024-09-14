@@ -1,3 +1,4 @@
+
 from .config import Config
 from .helpers import Picasso
 from random import randint
@@ -29,7 +30,7 @@ class ClockCaptcha:
     def generate_new(self):
         """Generate new captcha"""
         self._generate_values()
-        self.painter = Picasso(self.values, self.size)
+        self.painter = Picasso(self._values, self.size)
 
     def _generate_values(self):
         hour_range = [0, 12]
@@ -42,14 +43,14 @@ class ClockCaptcha:
         self._values = [*hours, *minutes]
 
     @property
-    def values(self):
+    def value(self):
         return ''.join(self._values)
 
-    def verify(self, values: Union[list[str], str]) -> bool:
+    def verify(self, value: Union[list[str], str]) -> bool:
         """Verify captcha"""
-        if isinstance(values, str):
-            values = [x for x in values]
-        return self.values == values
+        if isinstance(value, list):
+            value = ''.join(value)
+        return self.value == value
 
     def save_image(self, path, **kwargs):
         """Save captcha image. Format inferred from file extension."""

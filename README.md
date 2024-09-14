@@ -1,9 +1,11 @@
 # clockcaptcha
-Digital clock captcha
+Dynamically generated, hard-to-break captcha images. 
 
-![captcha](./color-captcha.png)
+![captcha](https://github.com/stefs304/clockcaptcha/blob/master/color-captcha.png?raw=true)
+*Can you tell what time it is?*
 
 > Supports:
+> * dynamically generated images
 > * `rgb` and `grayscale` color mode
 > * 12-hour and 24-hour clock mode
 > * custom colors
@@ -20,10 +22,13 @@ pip install clockcaptcha
 from clockcaptcha import ClockCaptcha
 
 captcha = ClockCaptcha()
-print(captcha.values)
+print(captcha.value)
 
 captcha.verify('0645') # True/False
 captcha.save_image('image.png')
+
+# generate new captcha
+captcha.generate_new()
 
 ```
 Choose between `color_mode='rgb'` ([color-captcha.png](color-captcha.png)) 

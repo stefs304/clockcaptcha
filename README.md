@@ -2,6 +2,7 @@
 Dynamically generated, hard-to-break captcha images. 
 
 ![captcha](https://github.com/stefs304/clockcaptcha/blob/master/color-captcha.png?raw=true)
+
 *Can you tell what time it is?*
 
 > Supports:

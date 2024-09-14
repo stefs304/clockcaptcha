@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "clockcaptcha"
-version = "0.0.1"
+dynamic = ["version"]
 authors = [
   { name="Stefan Stojanovic", email="stefs304@gmail.com" },
 ]
@@ -25,3 +25,6 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/stefs304/clockcaptcha"
 Issues = "https://github.com/stefs304/clockcaptcha/issues"
+
+[tool.hatch.version]
+path = "clockcaptcha/__version__.py"

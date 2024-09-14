@@ -29,7 +29,13 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install build
+        pip install build hatch
+    - name: Bump version
+      run: |
+        VERSION=$(hatch version)
+        RUN_NUMBER=${{ github.run_number }}
+        NEW_VERSION="${VERSION}.${RUN_NUMBER}"
+        hatch version $NEW_VERSION
     - name: Build package
       run: python -m build
     - name: Publish package

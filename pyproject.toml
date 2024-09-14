@@ -7,9 +7,9 @@ build-backend = "hatchling.build"
 name = "clockcaptcha"
 dynamic = ["version"]
 authors = [
-  { name="Stefan Stojanovic", email="stefs304@gmail.com" },
+  { name="Stefan Stojanovic" },
 ]
-description = "Digital clock captcha"
+description = "Dynamically generated, hard-to-break captcha images"
 readme = "README.md"
 license = {file = "LICENSE"}
 requires-python = ">=3.9"
@@ -21,7 +21,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-keywords = ["captcha", "python", "clock", "digital"]
+keywords = ["captcha", "captcha-image", "captcha-generator", "python", "clock", "digital"]
 
 [project.urls]
 Homepage = "https://github.com/stefs304/clockcaptcha"

@@ -1,7 +1,7 @@
 # clockcaptcha
 Dynamically generated, hard-to-break captcha images. 
 
-![captcha](https://github.com/stefs304/clockcaptcha/blob/master/color-captcha.png?raw=true)
+![captcha](https://raw.githubusercontent.com/stefs304/clockcaptcha/master/color-captcha.png)
 
 *Can you tell what time it is?*
 

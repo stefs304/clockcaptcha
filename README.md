@@ -1,13 +1,13 @@
 # clockcaptcha
-Dynamically generated, hard-to-break captcha images. 
+Dynamically generated, AI-resistant captcha images. 
 
 ![captcha](https://raw.githubusercontent.com/stefs304/clockcaptcha/master/color-captcha.png)
 
-*Can you tell what time it is?*
+*Can you tell what time it is? AI can't.*
 
-> Supports:
+> Features:
 > * dynamically generated images
-> * `rgb` and `grayscale` color mode
+> * rgb and grayscale color mode
 > * 12-hour and 24-hour clock mode
 > * custom colors
 
@@ -56,8 +56,9 @@ Change colors globally:
 ```python
 from clockcaptcha import ClockCaptcha
 ClockCaptcha.set_colors([
-    '#fff',
-    '#000'
+    '#FFFFFF',
+    '#000000',
+    '#999999'
 ])
 ```
 

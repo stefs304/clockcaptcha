@@ -69,10 +69,10 @@ class ClockCaptcha:
     def set_colors(colors: list[str]):
         """
         Set colors.
-        :param colors: list of hex colors. len >= 2
+        :param colors: list of hex colors. len >= 3
         :return:
         """
-        if len(colors) < 2:
-            raise ValueError('Must have at least 2 colors')
+        if len(colors) < 3:
+            raise ValueError('Must have at least 3 colors')
         Config.colors = colors
 

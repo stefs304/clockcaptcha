@@ -9,7 +9,7 @@ dynamic = ["version"]
 authors = [
   { name="Stefan Stojanovic" },
 ]
-description = "Dynamically generated, hard-to-break captcha images"
+description = "Dynamically generated, AI-resistant captcha images"
 readme = "README.md"
 license = {file = "LICENSE"}
 requires-python = ">=3.9"

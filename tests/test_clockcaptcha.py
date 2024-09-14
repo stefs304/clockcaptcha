@@ -27,6 +27,10 @@ class TestClockcaptcha(unittest.TestCase):
         colors = ['#fff', '#000', '#f0f']
         ClockCaptcha.set_colors(colors)
         self.assertEqual(Config.colors, colors)
+        with self.assertRaises(ValueError):
+            ClockCaptcha.set_colors(['#fff', '#000'])
+        with self.assertRaises(ValueError):
+            ClockCaptcha.set_colors([])
 
     def test_save_file(self):
         captcha = ClockCaptcha()

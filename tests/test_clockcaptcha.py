@@ -3,7 +3,7 @@ import unittest
 import random
 from clockcaptcha import ClockCaptcha
 from clockcaptcha.config import Config
-
+from tempfile import NamedTemporaryFile, TemporaryDirectory
 
 
 class TestClockcaptcha(unittest.TestCase):
@@ -13,6 +13,7 @@ class TestClockcaptcha(unittest.TestCase):
         captcha = ClockCaptcha()
         self.assertIsInstance(captcha.value, str)
         self.assertEqual(captcha.value, '1248')
+        self.assertEqual(len(captcha.value), 4)
 
     def test_verify(self):
         random.seed(0)
@@ -26,4 +27,25 @@ class TestClockcaptcha(unittest.TestCase):
         colors = ['#fff', '#000', '#f0f']
         ClockCaptcha.set_colors(colors)
         self.assertEqual(Config.colors, colors)
+
+    def test_save_file(self):
+        captcha = ClockCaptcha()
+        with NamedTemporaryFile() as f:
+            self.assertIsNone(captcha.save_image(f, format='png'))
+        with self.assertRaises(ValueError):
+            captcha.save_image(f)
+        with TemporaryDirectory() as tmp:
+            file = f'{tmp}/image.png'
+            self.assertIsNone(captcha.save_image(file))
+            file = f'{tmp}/image.jpg'
+            self.assertIsNone(captcha.save_image(file))
+
+    def test_generate_new(self):
+        random.seed(0)
+        captcha = ClockCaptcha()
+        self.assertTrue(captcha.verify('1248'))
+        captcha.generate_new()
+        self.assertNotEqual(captcha.value, '1248')
+        self.assertIsInstance(captcha.value, str)
+        self.assertEqual(len(captcha.value), 4)
 

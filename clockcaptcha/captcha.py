@@ -52,11 +52,18 @@ class ClockCaptcha:
             value = ''.join(value)
         return self.value == value
 
-    def save_image(self, path, **kwargs):
-        """Save captcha image. Format inferred from file extension."""
+    def save_image(self, path, format=None, **kwargs):
+        """
+        Save captcha image. Format inferred from file extension.
+        :param path: path to file.
+        :param format: If not provided, format inferred from file extension.
+        If no file extension is provided, ValueError raised.
+        :param kwargs: kwargs to pillow's Image.save() method
+        :return:
+        """
         if self.color_mode == 'grayscale':
             self.painter.image = self.painter.image.convert('L')
-        self.painter.image.save(path, **kwargs)
+        self.painter.image.save(path, format=format, **kwargs)
 
     @staticmethod
     def set_colors(colors: list[str]):

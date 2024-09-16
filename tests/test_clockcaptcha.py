@@ -1,8 +1,8 @@
 
 import unittest
 import random
-from clockcaptcha import ClockCaptcha
-from clockcaptcha.config import Config
+from color_captcha import ClockCaptcha
+from color_captcha.config import Config
 from tempfile import NamedTemporaryFile, TemporaryDirectory
 
 

@@ -1,4 +1,4 @@
-# clockcaptcha
+# color-captcha
 Dynamically generated, AI-resistant captcha images. 
 
 ![captcha](https://raw.githubusercontent.com/stefs304/clockcaptcha/master/color-captcha.png)
@@ -14,13 +14,13 @@ Dynamically generated, AI-resistant captcha images.
 ### Installation
 
 ```shell
-pip install clockcaptcha
+pip install color-captcha
 ```
 
 ### Usage
 
 ```python
-from clockcaptcha import ClockCaptcha
+from color_captcha import ClockCaptcha
 
 captcha = ClockCaptcha()
 print(captcha.value)
@@ -37,7 +37,7 @@ or `'grayscale'` ([grayscale-captcha.png](grayscale-captcha.png)).
 
 Pick between a 12-hour or a 24-hour `clock_mode`.
 ```python
-from clockcaptcha import ClockCaptcha
+from color_captcha import ClockCaptcha
 
 captcha = ClockCaptcha(clock_mode=12)
 ```
@@ -54,7 +54,7 @@ Image size can be changed with relative `size` parameter. Here are corresponding
 
 Change colors globally:
 ```python
-from clockcaptcha import ClockCaptcha
+from color_captcha import ClockCaptcha
 ClockCaptcha.set_colors([
     '#FFFFFF',
     '#000000',

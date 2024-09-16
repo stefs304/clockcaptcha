@@ -4,7 +4,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "clockcaptcha"
+name = "color-captcha"
 dynamic = ["version"]
 authors = [
   { name="Stefan Stojanovic" },
@@ -24,8 +24,8 @@ classifiers = [
 keywords = ["captcha", "captcha-image", "captcha-generator", "python", "clock", "digital"]
 
 [project.urls]
-Homepage = "https://github.com/stefs304/clockcaptcha"
-Issues = "https://github.com/stefs304/clockcaptcha/issues"
+Homepage = "https://github.com/stefs304/color-captcha"
+Issues = "https://github.com/stefs304/color-captcha/issues"
 
 [tool.hatch.version]
-path = "clockcaptcha/__version__.py"
+path = "color_captcha/__version__.py"

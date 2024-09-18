@@ -1,4 +1,7 @@
 
+### v0.1.5
+* Added new **DigitsCaptcha** class. Generates captcha with user-defined number of digits.
+
 ### v0.1.4 
 * Breaking change: package renamed to color-captcha. 
 

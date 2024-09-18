@@ -30,7 +30,7 @@ class ClockCaptcha:
     def generate_new(self):
         """Generate new captcha"""
         self._generate_values()
-        self.painter = Picasso(self._values, self.size)
+        self.painter = Picasso(self._values, self.size, 'clock')
 
     def _generate_values(self):
         hour_range = [0, 12]
@@ -75,4 +75,51 @@ class ClockCaptcha:
         if len(colors) < 3:
             raise ValueError('Must have at least 3 colors')
         Config.colors = colors
+
+
+class DigitsCaptcha:
+
+    def __init__(self, color_mode='rgb', size=3, n_digits=4, colors=None):
+        if color_mode not in ['rgb', 'grayscale']:
+            raise ValueError('color_mode must be "rgb" or "grayscale"')
+        if not isinstance(size, int) or size <= 0:
+            raise ValueError("size must be an integer greater than 0")
+        if colors and len(colors) < Config.min_colors:
+            raise ValueError(f"Number of colors must be at least {Config.min_colors}")
+        if not isinstance(n_digits, int) or n_digits < 1:
+            raise ValueError("n_digits must be an integer greater than 0")
+        self.colors = colors or Config.colors
+        self.size = size
+        self.n_digits = n_digits
+        self.color_mode = color_mode
+        self._values = None
+        self.painter = None
+        self.generate_new()
+
+    def generate_new(self):
+        self._values = [str(randint(0, 9)) for _ in range(self.n_digits)]
+        self.painter = Picasso(self._values, self.size, 'digits')
+
+    @property
+    def value(self):
+        return ''.join(self._values)
+
+    def verify(self, value: Union[list[str], str]):
+        """Verify captcha"""
+        if isinstance(value, list):
+            value = ''.join(value)
+        return self.value == value
+
+    def save_image(self, path, format=None, **kwargs):
+        """
+        Save captcha image. Format inferred from file extension.
+        :param path: path to file.
+        :param format: If not provided, format inferred from file extension.
+        If no file extension is provided, ValueError raised.
+        :param kwargs: kwargs to pillow's Image.save() method
+        :return:
+        """
+        if self.color_mode == 'grayscale':
+            self.painter.image = self.painter.image.convert('L')
+        self.painter.image.save(path, format=format, **kwargs)
 

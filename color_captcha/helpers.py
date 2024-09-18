@@ -1,7 +1,7 @@
 from .config import Config
 from .numbers import numbers, blank, sep
 from PIL import Image, ImageDraw
-from random import randint
+from random import randint, uniform
 
 
 
@@ -80,14 +80,14 @@ class TileGroup:
         color = color_choices[randint(0, len(color_choices)-1)]
         used_colors.append(color)
         color_choices.remove(color)
-        self.canvas.rectangle([x, y, x+size, y+size], fill=color)
+        self.canvas.rectangle([x, y, x+size, y+size], fill=self.brighten(color, Config.base_modification_factor))
         color = color_choices[randint(0, len(color_choices)-1)]
         color_choices.remove(color)
         polygon_choices = [
             [(x, y), (x + size, y), (x + size, y + size)],
             [(x + size, y), (x + size, y + size), (x, y + size)],
         ]
-        self.canvas.polygon(polygon_choices[randint(0, 1)], fill=color)
+        self.canvas.polygon(polygon_choices[randint(0, 1)], fill=self.brighten(color, Config.base_modification_factor))
         return color_choices
 
     def _draw_overlay(self, x, y, size, colors):
@@ -97,5 +97,21 @@ class TileGroup:
             color = Config.colors[randint(0, len(Config.colors)-1)]
         x, y = x + size/2, y + size/2
         radius = size/2
-        self.canvas.circle((x, y), radius, fill=color)
+        self.canvas.circle((x, y), radius, fill=self.brighten(color, Config.overlay_modification_factor))
 
+    @staticmethod
+    def brighten(color, factor):
+        """
+        Brightens the color by modifying non-dominant values.
+        :param color: hex color
+        :param factor:
+        :return:
+        """
+        color = color.lstrip('#')
+        rgb = [int(color[i:i+2], 16) for i in (0, 2, 4)]
+        dominant = max(rgb)
+        for i in range(len(rgb)):
+            if rgb[i] != dominant:
+                c = rgb[i] + int(rgb[i] * uniform(0, factor))
+                rgb[i] = c if c < 255 else 255
+        return '#' + ''.join([hex(c).lstrip('0x') for c in rgb])

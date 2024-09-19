@@ -1,26 +1,27 @@
 # color-captcha
 Dynamically generated, AI-resistant captcha images. 
 
-![captcha](https://raw.githubusercontent.com/stefs304/clockcaptcha/master/color-captcha.png)
+![color-captcha](https://raw.githubusercontent.com/stefs304/clockcaptcha/master/color-captcha.png)
 
 *Can you tell what time it is? AI can't.*
 
-Color-captcha uses higher-order shapes to hide the numbers from an AI. 
-AI can recognize that the image is made up of triangles and circles. 
-However, it cannot discern higher-order shapes (such as numbers) that appear in the image. 
-Variable, randomized colors makes this task even more difficult for the machine
+Color-captcha uses high-order shapes to hide meaningful content from an AI. 
+AI can recognize that the image is made up of triangles, squares and circles. 
+However, it cannot distinguish higher-order shapes that appear in the image. 
+Variable, randomized colors make this task even more difficult for the machine
 as it observes RGB layers separately. 
-The human eye, on the other hand, can spot the numbers easily. 
+To the human eye, however, the numbers are clearly visible. 
 
 Features:
-* ClockCaptcha and DigitsCaptcha generators
-* dynamically generated images
-* rgb and grayscale color mode
-* using custom colors
+* `ClockCaptcha` and `DigitsCaptcha` generators.
+* Dynamic generation of randomized images.
+* Highly performant: can generate 1000 images in 0.1 seconds.
+* RGB and grayscale color mode. 
+* Configurable (base colors, color variation percent).
 
 ### Installation
 
-```shellCan you tell what time it is
+```shell
 pip install color-captcha
 ```
 
@@ -59,13 +60,21 @@ Image size can be changed with relative `size` parameter. Here are corresponding
 | 4 | 760 | 260 |
 | ... | ... | ... | 
 
-Change colors globally:
+### Changing configuration
+Configuration changes are applied globally.
+* `colors`: list of base colors in hex format (full 6 characters required).
+* `base_variation_percent`: max \*variation of the color in the background.  
+* `content_variation_percent`: max \*variation of colors of the numbers.
+
+\* Variation percent means the color will be modified by percentage of the original color value.
+Setting the variation percent to 0 means the base colors will remain unchanged.
+
 ```python
-from color_captcha import ClockCaptcha
-ClockCaptcha.set_colors([
-    '#FFFFFF',
-    '#000000',
-    '#999999'
-])
+from color_captcha.config import Config
+
+Config.colors = ['#ec7063', '...']  # minimum 3 colors required
+Config.base_variation_percent = 0.45
+Config.content_variation_percent = 0.15
+
 ```
 

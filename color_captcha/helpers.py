@@ -80,14 +80,14 @@ class TileGroup:
         color = color_choices[randint(0, len(color_choices)-1)]
         used_colors.append(color)
         color_choices.remove(color)
-        self.canvas.rectangle([x, y, x+size, y+size], fill=self.brighten(color, Config.base_modification_factor))
+        self.canvas.rectangle([x, y, x+size, y+size], fill=self.brighten(color, Config.base_variation_percent))
         color = color_choices[randint(0, len(color_choices)-1)]
         color_choices.remove(color)
         polygon_choices = [
             [(x, y), (x + size, y), (x + size, y + size)],
             [(x + size, y), (x + size, y + size), (x, y + size)],
         ]
-        self.canvas.polygon(polygon_choices[randint(0, 1)], fill=self.brighten(color, Config.base_modification_factor))
+        self.canvas.polygon(polygon_choices[randint(0, 1)], fill=self.brighten(color, Config.base_variation_percent))
         return color_choices
 
     def _draw_overlay(self, x, y, size, colors):
@@ -97,7 +97,7 @@ class TileGroup:
             color = Config.colors[randint(0, len(Config.colors)-1)]
         x, y = x + size/2, y + size/2
         radius = size/2
-        self.canvas.circle((x, y), radius, fill=self.brighten(color, Config.overlay_modification_factor))
+        self.canvas.circle((x, y), radius, fill=self.brighten(color, Config.content_variation_percent))
 
     @staticmethod
     def brighten(color, factor):

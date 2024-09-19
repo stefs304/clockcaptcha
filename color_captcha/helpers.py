@@ -114,4 +114,4 @@ class TileGroup:
             if rgb[i] != dominant:
                 c = rgb[i] + int(rgb[i] * uniform(0, factor))
                 rgb[i] = c if c < 255 else 255
-        return '#' + ''.join([hex(c).lstrip('0x') for c in rgb])
+        return '#' + ''.join([hex(c)[2:] for c in rgb])

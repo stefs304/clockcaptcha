@@ -79,25 +79,22 @@ class ClockCaptcha:
 
 class DigitsCaptcha:
 
-    def __init__(self, color_mode='rgb', size=3, n_digits=4, colors=None):
+    def __init__(self, color_mode='rgb', size=3, digits=4):
         if color_mode not in ['rgb', 'grayscale']:
             raise ValueError('color_mode must be "rgb" or "grayscale"')
         if not isinstance(size, int) or size <= 0:
             raise ValueError("size must be an integer greater than 0")
-        if colors and len(colors) < Config.min_colors:
-            raise ValueError(f"Number of colors must be at least {Config.min_colors}")
-        if not isinstance(n_digits, int) or n_digits < 1:
+        if not isinstance(digits, int) or digits < 1:
             raise ValueError("n_digits must be an integer greater than 0")
-        self.colors = colors or Config.colors
         self.size = size
-        self.n_digits = n_digits
+        self.digits = digits
         self.color_mode = color_mode
         self._values = None
         self.painter = None
         self.generate_new()
 
     def generate_new(self):
-        self._values = [str(randint(0, 9)) for _ in range(self.n_digits)]
+        self._values = [str(randint(0, 9)) for _ in range(self.digits)]
         self.painter = Picasso(self._values, self.size, 'digits')
 
     @property

@@ -5,15 +5,22 @@ Dynamically generated, AI-resistant captcha images.
 
 *Can you tell what time it is? AI can't.*
 
-> Features:
-> * dynamically generated images
-> * rgb and grayscale color mode
-> * 12-hour and 24-hour clock mode
-> * custom colors
+Color-captcha uses higher-order shapes to hide the numbers from an AI. 
+AI can recognize that the image is made up of triangles and circles. 
+However, it cannot discern higher-order shapes (such as numbers) that appear in the image. 
+Variable, randomized colors makes this task even more difficult for the machine
+as it observes RGB layers separately. 
+The human eye, on the other hand, can spot the numbers easily. 
+
+Features:
+* ClockCaptcha and DigitsCaptcha generators
+* dynamically generated images
+* rgb and grayscale color mode
+* using custom colors
 
 ### Installation
 
-```shell
+```shellCan you tell what time it is
 pip install color-captcha
 ```
 

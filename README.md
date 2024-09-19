@@ -27,38 +27,59 @@ pip install color-captcha
 
 ### Usage
 
+#### ClockCaptcha
+
 ```python
 from color_captcha import ClockCaptcha
 
-captcha = ClockCaptcha()
+captcha = ClockCaptcha(clock_mode=12, color_mode='rgb') 
+# 12 or 24-hour mode
+# rgb or grayscale color_mode
+
+captcha.save_image('my_captcha.png') 
+# if no extension, set format explicitly
+captcha.save_image('my_captcha', format='png')
+
+# ClockCaptcha is initialized with randomized value
 print(captcha.value)
 
-captcha.verify('0645') # True/False
-captcha.save_image('image.png')
+# verify the guessed value
+correct = captcha.verify('0645') # True/False
+print(f'Guessed correctly: {correct}')
 
-# generate new captcha
+# create new captcha
 captcha.generate_new()
-
+captcha.save_image('new_captcha.png')
 ```
-Choose between `color_mode='rgb'` ([color-captcha.png](color-captcha.png)) 
-or `'grayscale'` ([grayscale-captcha.png](grayscale-captcha.png)). 
 
-Pick between a 12-hour or a 24-hour `clock_mode`.
+#### DigitsCaptcha
+Follows the same design of ClockCaptcha except it can generate arbitrary number of 
+digits, and is not in the clock format.
+
 ```python
-from color_captcha import ClockCaptcha
+from color_captcha import DigitsCaptcha
 
-captcha = ClockCaptcha(clock_mode=12)
+captcha = DigitsCaptcha(digits=5) # number of digits
+captcha.save_image('digits.png')
+captcha.verify('12345')
+captcha.generate_new()
 ```
 
-Image size can be changed with relative `size` parameter. Here are corresponding pixel values. 
+#### Size parameter
+Both ClockCaptcha and DigitsCaptcha have a `size` parameter. 
+This parameter changes the size of the image.
+Below are size parameter values and corresponding pixel values of the ClockCaptcha image.
+DigitsCaptcha varies in pixel size. 
 
-| size  | width   | height  |
-|-------|---------|---------|
-| 1     | 190     | 65      |
-| 2     | 380     | 130     |
-| **3** | **570** | **195** |
-| 4 | 760 | 260 |
-| ... | ... | ... | 
+ClockCaptcha sizes:
+
+| size            | width (pixels) | height (pixels) |
+|-----------------|----------------|-----------------|
+| 1               | 190            | 65              |
+| 2               | 380            | 130             |
+| **3 (default)** | **570**        | **195**         |
+| 4               | 760            | 260             |
+| ...             | ...            | ...             | 
 
 ### Changing configuration
 Configuration changes are applied globally.

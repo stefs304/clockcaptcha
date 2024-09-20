@@ -14,10 +14,8 @@ To the human eye, however, the numbers are clearly visible.
 
 Features:
 * `ClockCaptcha` and `DigitsCaptcha` generators.
-* Dynamic generation of randomized images.
-* Highly performant: can generate 1000 images in 0.1 seconds.
-* RGB and grayscale color mode. 
-* Configurable (base colors, color variation percent).
+* Decently performant: can generate 100 images in ~0.8 seconds.
+* Configurable (base colors, color variation).
 
 ### Installation
 
@@ -36,16 +34,16 @@ captcha = ClockCaptcha(clock_mode=12, color_mode='rgb')
 # 12 or 24-hour mode
 # rgb or grayscale color_mode
 
+# current captcha value
+print(captcha.value)
+
 captcha.save_image('my_captcha.png') 
 # if no extension, set format explicitly
 captcha.save_image('my_captcha', format='png')
 
-# ClockCaptcha is initialized with randomized value
-print(captcha.value)
-
 # verify the guessed value
-correct = captcha.verify('0645') # True/False
-print(f'Guessed correctly: {correct}')
+captcha.verify('0645') 
+# returns True/False
 
 # create new captcha
 captcha.generate_new()
@@ -53,7 +51,7 @@ captcha.save_image('new_captcha.png')
 ```
 
 #### DigitsCaptcha
-Follows the same design of ClockCaptcha except it can generate arbitrary number of 
+Follows the same usage as ClockCaptcha except it can generate arbitrary number of 
 digits, and is not in the clock format.
 
 ```python
@@ -86,7 +84,7 @@ Configuration changes are applied globally.
 * `colors`: list of base colors in hex format (full 6 characters required).
 * `base_variation_percent`: max \*variation of the color in the background.  
 * `content_variation_percent`: max \*variation of colors of the numbers.
-
+be
 \* Variation percent means the color will be modified by percentage of the original color value.
 Setting the variation percent to 0 means the base colors will remain unchanged.
 
@@ -94,8 +92,17 @@ Setting the variation percent to 0 means the base colors will remain unchanged.
 from color_captcha.config import Config
 
 Config.colors = ['#ec7063', '...']  # minimum 3 colors required
-Config.base_variation_percent = 0.45
+Config.base_variation_percent = 0.30
 Config.content_variation_percent = 0.15
 
 ```
 
+⚠️ **Important to consider:** 
+Increased difference in color variation between background and number can make numbers stand out more. 
+If this difference is too great the AI may pick up on that and be able to detect numbers. 
+The default values of 0.15 and 0.30 should be good for now, but may need to change in the future. 
+
+<hr>
+
+If you have ideas for improvements or notice a deficiency of this captcha please consider 
+joining the discussion [here](https://github.com/stefs304/color-captcha/discussions/3).

@@ -110,8 +110,9 @@ class TileGroup:
         color = color.lstrip('#')
         rgb = [int(color[i:i+2], 16) for i in (0, 2, 4)]
         dominant = max(rgb)
+        factor = uniform(0, factor)
         for i in range(len(rgb)):
             if rgb[i] != dominant:
-                c = rgb[i] + int(rgb[i] * uniform(0, factor))
+                c = rgb[i] + int(rgb[i] * factor)
                 rgb[i] = c if c < 255 else 255
         return '#' + ''.join([hex(c)[2:] for c in rgb])

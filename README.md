@@ -5,11 +5,11 @@ Dynamically generated, AI-resistant captcha images.
 
 *Can you tell what time it is? AI can't.*
 
-Color-captcha uses higher-order shapes to hide the information from an AI. 
+Color-captcha uses higher-order shapes to hide the information from AI. 
 AI can recognize that the image is made up of triangles, squares and circles.
 However, it cannot recognize that these shapes form more complex higher-order shapes, in this case numbers. 
 The numbers, therefore, remain hidden in plain sight.
-The human eye, on the other hand, should be able to see the numbers with very little effort. 
+The human eye, on the other hand, should be able to see the numbers with little effort. 
 
 Features:
 * `ClockCaptcha` and `DigitsCaptcha` generators.
@@ -50,13 +50,13 @@ captcha.save_image('new_captcha.png')
 ```
 
 #### DigitsCaptcha
-Same usage as ClockCaptcha except it can generate arbitrary number of 
+Same usage as ClockCaptcha except it generates captcha with arbitrary number of 
 digits, and is not in the clock format, just plain digits. 
 
 ```python
 from color_captcha import DigitsCaptcha
 
-captcha = DigitsCaptcha(digits=5) # number of digits
+captcha = DigitsCaptcha(digits=5)
 captcha.save_image('digits.png')
 captcha.verify('12345')
 captcha.generate_new()

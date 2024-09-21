@@ -89,7 +89,7 @@ To turn off color variation set these parameters to 0.
 ```python
 from color_captcha.config import Config
 
-Config.colors = ['#ec7063', '...']  # minimum 3 colors required
+Config.colors = ['#ec7063', '...']
 Config.base_variation_percent = 0.30
 Config.content_variation_percent = 0.15
 ```

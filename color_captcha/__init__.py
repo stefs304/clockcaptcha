@@ -1,3 +1,3 @@
 
-from .captcha import ClockCaptcha
+from .captcha import ClockCaptcha, DigitsCaptcha
 
